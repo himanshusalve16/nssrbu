@@ -1,6 +1,9 @@
 import Layout from "@/components/Layout";
 import TeamCard from "@/components/TeamCard";
+import SectionHeading from "@/components/SectionHeading";
+import { useScrollReveal } from "@/hooks/useScrollReveal";
 import { FileDown } from "lucide-react";
+import AnimatedCard from "@/components/AnimatedCard";
 
 const programIncharge = [{ name: "Dr. A. B. Sharma", role: "Program Incharge" }];
 
@@ -24,70 +27,65 @@ const otherPositions = [
 
 const volunteerYears = ["2024–25", "2023–24", "2022–23", "2021–22"];
 
+interface TeamSectionProps {
+  title: string;
+  members: { name: string; role: string }[];
+  maxCols?: string;
+}
+
+const TeamSection = ({ title, members, maxCols = "max-w-4xl" }: TeamSectionProps) => {
+  const ref = useScrollReveal<HTMLDivElement>({ children: true, stagger: 0.1 });
+  return (
+    <div className="mt-16">
+      <h2 className="text-lg font-bold text-primary mb-8 text-center tracking-wide uppercase text-sm">{title}</h2>
+      <div ref={ref} className={`grid sm:grid-cols-2 lg:grid-cols-${members.length > 2 ? (members.length > 3 ? "4" : "3") : "2"} gap-6 ${maxCols} mx-auto`}>
+        {members.map((m) => (
+          <TeamCard key={m.name} name={m.name} role={m.role} />
+        ))}
+      </div>
+    </div>
+  );
+};
+
 const Team = () => {
+  const volRef = useScrollReveal<HTMLDivElement>({ children: true, stagger: 0.08 });
+
   return (
     <Layout>
-      <section className="container py-16">
-        <h1 className="text-3xl font-bold text-center text-foreground">Our Team</h1>
-        <p className="mt-3 text-center text-muted-foreground max-w-xl mx-auto">
-          The dedicated individuals who lead and organize NSS activities at Ramdeobaba University.
-        </p>
+      <section className="container py-20">
+        <SectionHeading
+          title="Our Team"
+          subtitle="The dedicated individuals who lead and organize NSS activities at Ramdeobaba University."
+        />
 
         {/* Program Incharge */}
-        <div className="mt-14">
-          <h2 className="text-xl font-bold text-foreground mb-6 text-center">Program Incharge</h2>
+        <div className="mt-10">
+          <h2 className="text-sm font-bold text-primary mb-8 text-center tracking-widest uppercase">Program Incharge</h2>
           <div className="flex justify-center">
-            {programIncharge.map((m) => (
-              <div key={m.name} className="w-full max-w-xs">
-                <TeamCard name={m.name} role={m.role} />
-              </div>
-            ))}
+            <div className="w-full max-w-xs">
+              <TeamCard name={programIncharge[0].name} role={programIncharge[0].role} />
+            </div>
           </div>
         </div>
 
-        {/* Secretaries */}
-        <div className="mt-14">
-          <h2 className="text-xl font-bold text-foreground mb-6 text-center">Secretaries</h2>
-          <div className="grid sm:grid-cols-2 gap-6 max-w-2xl mx-auto">
-            {secretaries.map((m) => (
-              <TeamCard key={m.name} name={m.name} role={m.role} />
-            ))}
-          </div>
-        </div>
-
-        {/* Joint Secretaries */}
-        <div className="mt-14">
-          <h2 className="text-xl font-bold text-foreground mb-6 text-center">Joint Secretaries</h2>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-4xl mx-auto">
-            {jointSecretaries.map((m) => (
-              <TeamCard key={m.name} name={m.name} role={m.role} />
-            ))}
-          </div>
-        </div>
-
-        {/* Other Positions */}
-        <div className="mt-14">
-          <h2 className="text-xl font-bold text-foreground mb-6 text-center">Other Position Holders</h2>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {otherPositions.map((m) => (
-              <TeamCard key={m.name} name={m.name} role={m.role} />
-            ))}
-          </div>
-        </div>
+        <TeamSection title="Secretaries" members={secretaries} maxCols="max-w-2xl" />
+        <TeamSection title="Joint Secretaries" members={jointSecretaries} maxCols="max-w-4xl" />
+        <TeamSection title="Other Position Holders" members={otherPositions} />
 
         {/* Volunteer Lists */}
-        <div className="mt-20">
-          <h2 className="text-xl font-bold text-foreground mb-6 text-center">Volunteer Lists</h2>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 max-w-4xl mx-auto">
+        <div className="mt-24 pt-12 border-t border-border/40">
+          <h2 className="text-sm font-bold text-primary mb-8 text-center tracking-widest uppercase">Volunteer Lists</h2>
+          <div ref={volRef} className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 max-w-4xl mx-auto">
             {volunteerYears.map((year) => (
-              <a
-                key={year}
-                href="#"
-                className="flex items-center justify-center gap-2 rounded-lg border border-border bg-card px-4 py-3 text-sm font-medium text-foreground hover:bg-muted transition-colors"
-              >
-                <FileDown className="h-4 w-4 text-primary" />
-                {year} Volunteers
-              </a>
+              <AnimatedCard key={year} className="rounded-xl border border-border/60 bg-card">
+                <a
+                  href="#"
+                  className="flex items-center justify-center gap-2.5 px-4 py-4 text-sm font-medium text-foreground hover:text-primary transition-colors"
+                >
+                  <FileDown className="h-4 w-4 text-primary" strokeWidth={1.5} />
+                  {year} Volunteers
+                </a>
+              </AnimatedCard>
             ))}
           </div>
         </div>

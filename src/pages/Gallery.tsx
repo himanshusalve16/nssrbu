@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { Image } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
 import Layout from "@/components/Layout";
+import SectionHeading from "@/components/SectionHeading";
 
 const albums = [
   "All",
@@ -16,7 +18,6 @@ const albums = [
   "Junoon",
 ];
 
-// Placeholder gallery items
 const galleryItems = [
   { id: 1, event: "Independence Day", alt: "Flag hoisting ceremony" },
   { id: 2, event: "Independence Day", alt: "Cultural performance" },
@@ -42,44 +43,63 @@ const Gallery = () => {
 
   return (
     <Layout>
-      <section className="container py-16">
-        <h1 className="text-3xl font-bold text-center text-foreground">Gallery</h1>
-        <p className="mt-3 text-center text-muted-foreground max-w-xl mx-auto">
-          Visual records from NSS events and camps.
-        </p>
+      <section className="container py-20">
+        <SectionHeading
+          title="Gallery"
+          subtitle="Visual records from NSS events and camps."
+        />
 
         {/* Filter */}
-        <div className="mt-10 flex flex-wrap justify-center gap-2">
+        <div className="flex flex-wrap justify-center gap-2 mb-12">
           {albums.map((album) => (
             <button
               key={album}
               onClick={() => setFilter(album)}
-              className={`px-4 py-2 rounded-md text-xs font-medium transition-colors ${
+              className={`relative px-4 py-2 rounded-lg text-xs font-medium transition-colors ${
                 filter === album
-                  ? "bg-primary text-primary-foreground"
-                  : "bg-muted text-muted-foreground hover:text-foreground"
+                  ? "text-primary"
+                  : "text-muted-foreground hover:text-foreground"
               }`}
             >
               {album}
+              {filter === album && (
+                <motion.div
+                  layoutId="galleryFilter"
+                  className="absolute inset-0 bg-primary/5 border border-primary/20 rounded-lg -z-10"
+                  transition={{ type: "spring", stiffness: 400, damping: 30 }}
+                />
+              )}
             </button>
           ))}
         </div>
 
         {/* Grid */}
-        <div className="mt-10 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-          {filtered.map((item) => (
-            <div
-              key={item.id}
-              className="aspect-square rounded-lg border border-border bg-muted flex flex-col items-center justify-center gap-2 overflow-hidden"
-            >
-              <Image className="h-8 w-8 text-muted-foreground" />
-              <span className="text-xs text-muted-foreground text-center px-2">{item.alt}</span>
-            </div>
-          ))}
-        </div>
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={filter}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.2 }}
+            className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4"
+          >
+            {filtered.map((item, i) => (
+              <motion.div
+                key={item.id}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: i * 0.04, duration: 0.3 }}
+                className="group aspect-square rounded-xl border border-border/60 bg-muted/30 flex flex-col items-center justify-center gap-2 overflow-hidden cursor-pointer hover:border-primary/20 transition-colors"
+              >
+                <Image className="h-7 w-7 text-muted-foreground/40 group-hover:text-primary/40 transition-colors" strokeWidth={1.5} />
+                <span className="text-xs text-muted-foreground text-center px-3">{item.alt}</span>
+              </motion.div>
+            ))}
+          </motion.div>
+        </AnimatePresence>
 
         {filtered.length === 0 && (
-          <p className="mt-10 text-center text-muted-foreground">
+          <p className="mt-12 text-center text-muted-foreground">
             No images available for this event yet.
           </p>
         )}

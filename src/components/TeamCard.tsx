@@ -1,4 +1,5 @@
 import { Instagram, Linkedin } from "lucide-react";
+import AnimatedCard from "@/components/AnimatedCard";
 
 interface TeamCardProps {
   name: string;
@@ -7,23 +8,23 @@ interface TeamCardProps {
 
 const TeamCard = ({ name, role }: TeamCardProps) => {
   return (
-    <div className="rounded-lg border border-border bg-card p-6 text-center">
-      <div className="mx-auto h-24 w-24 rounded-full bg-muted flex items-center justify-center mb-4">
-        <span className="font-serif font-bold text-2xl text-muted-foreground">
+    <AnimatedCard className="rounded-xl border border-border/60 bg-card p-7 text-center">
+      <div className="mx-auto h-20 w-20 rounded-full bg-primary/5 flex items-center justify-center mb-5">
+        <span className="font-serif font-bold text-2xl text-primary/60">
           {name.charAt(0)}
         </span>
       </div>
-      <h3 className="font-serif font-bold text-foreground">{name}</h3>
+      <h3 className="font-serif font-bold text-foreground text-base">{name}</h3>
       <p className="text-sm text-muted-foreground mt-1">{role}</p>
-      <div className="flex justify-center gap-3 mt-4">
-        <a href="#" className="text-muted-foreground hover:text-foreground transition-colors" aria-label="Instagram">
+      <div className="flex justify-center gap-2 mt-5">
+        <a href="#" className="p-2 rounded-lg text-muted-foreground hover:text-primary hover:bg-primary/5 transition-colors" aria-label="Instagram">
           <Instagram className="h-4 w-4" />
         </a>
-        <a href="#" className="text-muted-foreground hover:text-foreground transition-colors" aria-label="LinkedIn">
+        <a href="#" className="p-2 rounded-lg text-muted-foreground hover:text-primary hover:bg-primary/5 transition-colors" aria-label="LinkedIn">
           <Linkedin className="h-4 w-4" />
         </a>
       </div>
-    </div>
+    </AnimatedCard>
   );
 };
 
