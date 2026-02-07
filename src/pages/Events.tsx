@@ -1,6 +1,9 @@
 import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import Layout from "@/components/Layout";
 import EventCard from "@/components/EventCard";
+import SectionHeading from "@/components/SectionHeading";
+import { useScrollReveal } from "@/hooks/useScrollReveal";
 
 const regularEvents = [
   { name: "Independence Day", description: "Commemorating India's independence with flag hoisting ceremonies and patriotic programs." },
@@ -24,45 +27,58 @@ const specialCamps = [
 
 const Events = () => {
   const [tab, setTab] = useState<"regular" | "camps">("regular");
+  const gridRef = useScrollReveal<HTMLDivElement>({ children: true, stagger: 0.08 });
+
+  const items = tab === "regular" ? regularEvents : specialCamps;
 
   return (
     <Layout>
-      <section className="container py-16">
-        <h1 className="text-3xl font-bold text-center text-foreground">Events & Camps</h1>
-        <p className="mt-3 text-center text-muted-foreground max-w-xl mx-auto">
-          A comprehensive record of all activities conducted by the NSS Unit.
-        </p>
+      <section className="container py-20">
+        <SectionHeading
+          title="Events & Camps"
+          subtitle="A comprehensive record of all activities conducted by the NSS Unit."
+        />
 
         {/* Tabs */}
-        <div className="flex justify-center mt-10 gap-2">
-          <button
-            onClick={() => setTab("regular")}
-            className={`px-6 py-2.5 rounded-md text-sm font-medium transition-colors ${
-              tab === "regular"
-                ? "bg-primary text-primary-foreground"
-                : "bg-muted text-muted-foreground hover:text-foreground"
-            }`}
-          >
-            Regular Events
-          </button>
-          <button
-            onClick={() => setTab("camps")}
-            className={`px-6 py-2.5 rounded-md text-sm font-medium transition-colors ${
-              tab === "camps"
-                ? "bg-primary text-primary-foreground"
-                : "bg-muted text-muted-foreground hover:text-foreground"
-            }`}
-          >
-            Special Camps
-          </button>
+        <div className="flex justify-center gap-2 mb-12">
+          {(["regular", "camps"] as const).map((t) => (
+            <button
+              key={t}
+              onClick={() => setTab(t)}
+              className={`relative px-6 py-2.5 rounded-lg text-sm font-medium transition-colors ${
+                tab === t
+                  ? "text-primary"
+                  : "text-muted-foreground hover:text-foreground"
+              }`}
+            >
+              {t === "regular" ? "Regular Events" : "Special Camps"}
+              {tab === t && (
+                <motion.div
+                  layoutId="eventTab"
+                  className="absolute inset-0 bg-primary/5 border border-primary/20 rounded-lg -z-10"
+                  transition={{ type: "spring", stiffness: 400, damping: 30 }}
+                />
+              )}
+            </button>
+          ))}
         </div>
 
         {/* Cards */}
-        <div className="mt-10 grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {(tab === "regular" ? regularEvents : specialCamps).map((event) => (
-            <EventCard key={event.name} name={event.name} description={event.description} />
-          ))}
-        </div>
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={tab}
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -16 }}
+            transition={{ duration: 0.25 }}
+          >
+            <div ref={gridRef} className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
+              {items.map((event) => (
+                <EventCard key={event.name} name={event.name} description={event.description} />
+              ))}
+            </div>
+          </motion.div>
+        </AnimatePresence>
       </section>
     </Layout>
   );
