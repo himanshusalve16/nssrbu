@@ -3,6 +3,7 @@ import { Image } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import Layout from "@/components/Layout";
 import SectionHeading from "@/components/SectionHeading";
+import MonumentBackground from "@/components/MonumentBackground";
 
 const albums = [
   "All",
@@ -43,7 +44,9 @@ const Gallery = () => {
 
   return (
     <Layout>
-      <section className="container py-20">
+      <section className="relative">
+        <MonumentBackground variant="gallery" />
+        <div className="container relative py-20">
         <SectionHeading
           title="Gallery"
           subtitle="Visual records from NSS events and camps."
@@ -103,6 +106,7 @@ const Gallery = () => {
             No images available for this event yet.
           </p>
         )}
+        </div>
       </section>
     </Layout>
   );
