@@ -74,7 +74,12 @@ const Events = () => {
           >
             <div ref={gridRef} className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
               {items.map((event) => (
-                <EventCard key={event.name} name={event.name} description={event.description} />
+              <EventCard
+                key={event.name}
+                name={event.name}
+                description={event.description}
+                showCarousel={["PRERNA 16.0", "Prayas", "Independence Day", "Happython"].includes(event.name)}
+              />
               ))}
             </div>
           </motion.div>

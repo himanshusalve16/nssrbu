@@ -4,10 +4,12 @@ import { motion } from "framer-motion";
 import Layout from "@/components/Layout";
 import SectionHeading from "@/components/SectionHeading";
 import AnimatedCard from "@/components/AnimatedCard";
+import MonumentBackground from "@/components/MonumentBackground";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 import { useCountUp } from "@/hooks/useCountUp";
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
+import { domains } from "@/data/domains";
 
 const stats = [
   { label: "Volunteers", value: 200, icon: Users, suffix: "+" },
@@ -52,6 +54,7 @@ const Home = () => {
     <Layout>
       {/* Hero */}
       <section className="relative overflow-hidden">
+        <MonumentBackground variant="hero" />
         <div className="absolute inset-0 bg-gradient-to-b from-primary/[0.03] to-transparent" />
         <div ref={heroRef} className="container relative py-24 md:py-40 text-center">
           <div data-hero className="inline-block mb-6 px-4 py-1.5 rounded-full border border-primary/20 text-xs font-medium text-primary tracking-widest uppercase">
@@ -135,37 +138,38 @@ const Home = () => {
         </div>
       </section>
 
-      {/* What We Do */}
-      <section className="border-t border-border/60">
-        <div className="container py-24">
+      {/* Domains - What We Do */}
+      <section className="relative border-t border-border/60">
+        <MonumentBackground variant="domains" />
+        <div className="container relative py-24">
           <SectionHeading
             title="What We Do"
             subtitle="Our activities span across social service, health awareness, environmental sustainability, and skill development."
           />
-          <WhatWeDoGrid />
+          <DomainsGrid />
         </div>
       </section>
     </Layout>
   );
 };
 
-const domains = [
-  { icon: Heart, title: "Community Service", desc: "Village adoption, cleanliness drives, and outreach programs." },
-  { icon: Target, title: "Awareness Campaigns", desc: "Health, legal rights, and environmental awareness initiatives." },
-  { icon: Users, title: "Youth Development", desc: "Leadership training, workshops, and skill-building activities." },
-  { icon: Award, title: "National Integration", desc: "Celebrations and programs promoting unity and civic duty." },
-];
-
-const WhatWeDoGrid = () => {
-  const ref = useScrollReveal<HTMLDivElement>({ children: true, stagger: 0.12 });
+const DomainsGrid = () => {
+  const ref = useScrollReveal<HTMLDivElement>({ children: true, stagger: 0.1 });
   return (
-    <div ref={ref} className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-5xl mx-auto">
+    <div ref={ref} className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
       {domains.map((d) => (
-        <AnimatedCard key={d.title} className="rounded-xl border border-border/60 bg-card p-6 text-center">
-          <d.icon className="h-7 w-7 text-primary mx-auto mb-4" strokeWidth={1.5} />
-          <h3 className="font-serif font-bold text-foreground text-base">{d.title}</h3>
-          <p className="mt-2 text-sm text-muted-foreground leading-relaxed">{d.desc}</p>
-        </AnimatedCard>
+        <Link key={d.id} to={`/domain/${d.id}`}>
+          <AnimatedCard className="rounded-xl border border-border/60 bg-card p-7 text-center h-full cursor-pointer group">
+            <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-primary/5 mx-auto mb-4 transition-colors group-hover:bg-primary/10">
+              <d.icon className="h-6 w-6 text-primary" strokeWidth={1.5} />
+            </div>
+            <h3 className="font-serif font-bold text-foreground text-base group-hover:text-primary transition-colors">{d.title}</h3>
+            <p className="mt-2 text-sm text-muted-foreground leading-relaxed">{d.desc}</p>
+            <span className="mt-4 inline-flex items-center gap-1 text-xs font-medium text-primary opacity-0 group-hover:opacity-100 transition-opacity">
+              Explore <ArrowRight className="h-3 w-3" />
+            </span>
+          </AnimatedCard>
+        </Link>
       ))}
     </div>
   );
