@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import Layout from "@/components/Layout";
 import EventCard from "@/components/EventCard";
 import SectionHeading from "@/components/SectionHeading";
+import MonumentBackground from "@/components/MonumentBackground";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 
 const regularEvents = [
@@ -33,7 +34,9 @@ const Events = () => {
 
   return (
     <Layout>
-      <section className="container py-20">
+      <section className="relative">
+        <MonumentBackground variant="events" />
+        <div className="container relative py-20">
         <SectionHeading
           title="Events & Camps"
           subtitle="A comprehensive record of all activities conducted by the NSS Unit."
@@ -84,6 +87,7 @@ const Events = () => {
             </div>
           </motion.div>
         </AnimatePresence>
+        </div>
       </section>
     </Layout>
   );

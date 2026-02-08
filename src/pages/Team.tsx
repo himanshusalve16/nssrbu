@@ -1,6 +1,7 @@
 import Layout from "@/components/Layout";
 import TeamCard from "@/components/TeamCard";
 import SectionHeading from "@/components/SectionHeading";
+import MonumentBackground from "@/components/MonumentBackground";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 import { FileDown } from "lucide-react";
 import AnimatedCard from "@/components/AnimatedCard";
@@ -52,7 +53,9 @@ const Team = () => {
 
   return (
     <Layout>
-      <section className="container py-20">
+      <section className="relative">
+        <MonumentBackground variant="team" />
+        <div className="container relative py-20">
         <SectionHeading
           title="Our Team"
           subtitle="The dedicated individuals who lead and organize NSS activities at Ramdeobaba University."
@@ -88,6 +91,7 @@ const Team = () => {
               </AnimatedCard>
             ))}
           </div>
+        </div>
         </div>
       </section>
     </Layout>
