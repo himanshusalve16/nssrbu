@@ -283,48 +283,53 @@ const Rosette = ({ className = "" }: { className?: string }) => (
 
 const HeroMotifs = () => (
   <>
-    <FloralMotif className="absolute -left-28 -top-28 h-[600px] w-[600px] opacity-0" />
-    <JaaliCorner className="absolute -right-20 -top-20 h-[450px] w-[450px] opacity-0" />
-    <PaisleyVine className="absolute -right-8 top-1/4 h-[600px] w-auto opacity-0" />
-    <MandalaBorder className="absolute bottom-0 left-0 w-full h-20 opacity-0" />
-    <Rosette className="absolute left-[15%] bottom-[20%] h-[100px] w-[100px] opacity-0" />
-    <Rosette className="absolute right-[25%] top-[15%] h-[80px] w-[80px] opacity-0" />
+    {/* Floral — always visible including mobile */}
+    <FloralMotif className="absolute -left-28 -top-28 h-[400px] w-[400px] md:h-[600px] md:w-[600px] opacity-0" />
+    {/* Everything else hidden on mobile to avoid clutter */}
+    <JaaliCorner className="absolute -right-20 -top-20 h-[450px] w-[450px] opacity-0 hidden md:block" />
+    <PaisleyVine className="absolute -right-8 top-[45%] h-[500px] w-auto opacity-0 hidden md:block" />
+    <MandalaBorder className="absolute bottom-0 left-0 w-full h-20 opacity-0 hidden md:block" />
+    <Rosette className="absolute left-[15%] bottom-[20%] h-[100px] w-[100px] opacity-0 hidden lg:block" />
+    <Rosette className="absolute right-[25%] top-[15%] h-[80px] w-[80px] opacity-0 hidden lg:block" />
   </>
 );
 
 const DomainsMotifs = () => (
   <>
-    <FloralMotif className="absolute -right-32 -bottom-32 h-[550px] w-[550px] opacity-0" />
-    <PaisleyVine className="absolute -left-10 top-0 h-full w-auto opacity-0" />
-    <MandalaBorder className="absolute top-0 left-0 w-full h-16 opacity-0 rotate-180" />
-    <JaaliCorner className="absolute left-[10%] -bottom-16 h-[280px] w-[280px] opacity-0" />
-    <Rosette className="absolute right-[10%] top-[20%] h-[90px] w-[90px] opacity-0" />
+    <FloralMotif className="absolute -right-32 -bottom-32 h-[350px] w-[350px] md:h-[550px] md:w-[550px] opacity-0" />
+    {/* Vine moved down to avoid jaali overlap */}
+    <PaisleyVine className="absolute -left-10 top-[40%] h-[60%] w-auto opacity-0 hidden md:block" />
+    <MandalaBorder className="absolute top-0 left-0 w-full h-16 opacity-0 rotate-180 hidden md:block" />
+    <JaaliCorner className="absolute left-[10%] -bottom-16 h-[280px] w-[280px] opacity-0 hidden lg:block" />
+    <Rosette className="absolute right-[10%] top-[20%] h-[90px] w-[90px] opacity-0 hidden lg:block" />
   </>
 );
 
 const EventsMotifs = () => (
   <>
-    <JaaliCorner className="absolute -left-24 -top-24 h-[400px] w-[400px] opacity-0" />
-    <FloralMotif className="absolute -right-36 bottom-0 h-[500px] w-[500px] opacity-0" />
-    <PaisleyVine className="absolute right-[5%] top-0 h-[500px] w-auto opacity-0" />
-    <Rosette className="absolute left-[20%] bottom-[10%] h-[70px] w-[70px] opacity-0" />
+    <JaaliCorner className="absolute -left-24 -top-24 h-[400px] w-[400px] opacity-0 hidden md:block" />
+    <FloralMotif className="absolute -right-36 bottom-0 h-[350px] w-[350px] md:h-[500px] md:w-[500px] opacity-0" />
+    {/* Vine on right moved down */}
+    <PaisleyVine className="absolute right-[5%] top-[35%] h-[500px] w-auto opacity-0 hidden lg:block" />
+    <Rosette className="absolute left-[20%] bottom-[10%] h-[70px] w-[70px] opacity-0 hidden lg:block" />
   </>
 );
 
 const TeamMotifs = () => (
   <>
-    <PaisleyVine className="absolute -right-6 top-0 h-[700px] w-auto opacity-0" />
-    <JaaliCorner className="absolute -left-20 bottom-0 h-[380px] w-[380px] opacity-0" />
-    <FloralMotif className="absolute left-[5%] -top-20 h-[400px] w-[400px] opacity-0" />
-    <Rosette className="absolute right-[15%] bottom-[15%] h-[80px] w-[80px] opacity-0" />
+    {/* Right vine moved down */}
+    <PaisleyVine className="absolute -right-6 top-[30%] h-[600px] w-auto opacity-0 hidden md:block" />
+    <JaaliCorner className="absolute -left-20 bottom-0 h-[380px] w-[380px] opacity-0 hidden md:block" />
+    <FloralMotif className="absolute left-[5%] -top-20 h-[300px] w-[300px] md:h-[400px] md:w-[400px] opacity-0" />
+    <Rosette className="absolute right-[15%] bottom-[15%] h-[80px] w-[80px] opacity-0 hidden lg:block" />
   </>
 );
 
 const GalleryMotifs = () => (
   <>
-    <FloralMotif className="absolute -left-28 top-0 h-[450px] w-[450px] opacity-0" />
-    <PaisleyVine className="absolute -right-8 bottom-0 h-[500px] w-auto opacity-0 scale-x-[-1]" />
-    <JaaliCorner className="absolute right-[5%] -top-16 h-[320px] w-[320px] opacity-0" />
-    <Rosette className="absolute left-[30%] bottom-[5%] h-[90px] w-[90px] opacity-0" />
+    <FloralMotif className="absolute -left-28 top-0 h-[300px] w-[300px] md:h-[450px] md:w-[450px] opacity-0" />
+    <PaisleyVine className="absolute -right-8 bottom-0 h-[500px] w-auto opacity-0 scale-x-[-1] hidden md:block" />
+    <JaaliCorner className="absolute right-[5%] -top-16 h-[320px] w-[320px] opacity-0 hidden md:block" />
+    <Rosette className="absolute left-[30%] bottom-[5%] h-[90px] w-[90px] opacity-0 hidden lg:block" />
   </>
 );
