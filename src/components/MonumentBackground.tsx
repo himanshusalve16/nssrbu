@@ -33,7 +33,7 @@ const MonumentBackground = ({ className = "", variant = "hero" }: { className?: 
       {variant === "team" && <TeamMotifs />}
       {variant === "gallery" && <GalleryMotifs />}
       {/* Readability overlay — soft center mask so text remains crisp */}
-      <div className="absolute inset-0 bg-gradient-to-b from-background/60 via-background/80 to-background/60 dark:from-background/50 dark:via-background/70 dark:to-background/50" />
+      <div className="absolute inset-0 bg-gradient-to-b from-background/40 via-background/60 to-background/40 dark:from-background/30 dark:via-background/50 dark:to-background/30" />
     </div>
   );
 };
@@ -49,17 +49,17 @@ const JaaliCorner = ({ className = "" }: { className?: string }) => (
   <svg className={`${className} dark:brightness-150 dark:contrast-125`} viewBox="0 0 400 400" fill="none">
     <defs>
       <linearGradient id="jl1" x1="0" y1="0" x2="400" y2="400" gradientUnits="userSpaceOnUse">
-        <stop offset="0%" stopColor="hsl(230 60% 20%)" stopOpacity="0.65" />
-        <stop offset="50%" stopColor="hsl(230 60% 35%)" stopOpacity="0.50" />
-        <stop offset="100%" stopColor="hsl(230 60% 50%)" stopOpacity="0.35" />
+        <stop offset="0%" stopColor="hsl(230 60% 20%)" stopOpacity="0.75" />
+        <stop offset="50%" stopColor="hsl(230 60% 35%)" stopOpacity="0.60" />
+        <stop offset="100%" stopColor="hsl(230 60% 50%)" stopOpacity="0.45" />
       </linearGradient>
       <linearGradient id="jl2" x1="400" y1="0" x2="0" y2="400" gradientUnits="userSpaceOnUse">
-        <stop offset="0%" stopColor="hsl(230 60% 18%)" stopOpacity="0.55" />
-        <stop offset="100%" stopColor="hsl(230 60% 42%)" stopOpacity="0.40" />
+        <stop offset="0%" stopColor="hsl(230 60% 18%)" stopOpacity="0.70" />
+        <stop offset="100%" stopColor="hsl(230 60% 42%)" stopOpacity="0.50" />
       </linearGradient>
       <linearGradient id="jl3" x1="200" y1="0" x2="200" y2="400" gradientUnits="userSpaceOnUse">
-        <stop offset="0%" stopColor="hsl(230 55% 28%)" stopOpacity="0.45" />
-        <stop offset="100%" stopColor="hsl(230 55% 55%)" stopOpacity="0.25" />
+        <stop offset="0%" stopColor="hsl(230 55% 28%)" stopOpacity="0.60" />
+        <stop offset="100%" stopColor="hsl(230 55% 55%)" stopOpacity="0.40" />
       </linearGradient>
     </defs>
     {/* Outer diamond lattice — layered */}
@@ -104,22 +104,22 @@ const FloralMotif = ({ className = "" }: { className?: string }) => (
   <svg className={`${className} dark:brightness-150 dark:contrast-125`} viewBox="0 0 500 500" fill="none">
     <defs>
       <linearGradient id="fl1" x1="0" y1="0" x2="500" y2="500" gradientUnits="userSpaceOnUse">
-        <stop offset="0%" stopColor="hsl(230 60% 18%)" stopOpacity="0.60" />
-        <stop offset="40%" stopColor="hsl(230 60% 30%)" stopOpacity="0.50" />
-        <stop offset="100%" stopColor="hsl(230 60% 48%)" stopOpacity="0.35" />
+        <stop offset="0%" stopColor="hsl(230 60% 18%)" stopOpacity="0.75" />
+        <stop offset="40%" stopColor="hsl(230 60% 30%)" stopOpacity="0.65" />
+        <stop offset="100%" stopColor="hsl(230 60% 48%)" stopOpacity="0.45" />
       </linearGradient>
       <linearGradient id="fl2" x1="250" y1="0" x2="250" y2="500" gradientUnits="userSpaceOnUse">
-        <stop offset="0%" stopColor="hsl(230 60% 15%)" stopOpacity="0.55" />
-        <stop offset="100%" stopColor="hsl(230 60% 42%)" stopOpacity="0.30" />
+        <stop offset="0%" stopColor="hsl(230 60% 15%)" stopOpacity="0.70" />
+        <stop offset="100%" stopColor="hsl(230 60% 42%)" stopOpacity="0.45" />
       </linearGradient>
       <linearGradient id="fl3" x1="0" y1="250" x2="500" y2="250" gradientUnits="userSpaceOnUse">
-        <stop offset="0%" stopColor="hsl(230 55% 22%)" stopOpacity="0.50" />
-        <stop offset="100%" stopColor="hsl(230 55% 50%)" stopOpacity="0.25" />
+        <stop offset="0%" stopColor="hsl(230 55% 22%)" stopOpacity="0.65" />
+        <stop offset="100%" stopColor="hsl(230 55% 50%)" stopOpacity="0.40" />
       </linearGradient>
       <radialGradient id="fl4" cx="250" cy="250" r="250" gradientUnits="userSpaceOnUse">
-        <stop offset="0%" stopColor="hsl(230 60% 25%)" stopOpacity="0.55" />
-        <stop offset="60%" stopColor="hsl(230 60% 35%)" stopOpacity="0.35" />
-        <stop offset="100%" stopColor="hsl(230 60% 50%)" stopOpacity="0.15" />
+        <stop offset="0%" stopColor="hsl(230 60% 25%)" stopOpacity="0.70" />
+        <stop offset="60%" stopColor="hsl(230 60% 35%)" stopOpacity="0.50" />
+        <stop offset="100%" stopColor="hsl(230 60% 50%)" stopOpacity="0.25" />
       </radialGradient>
     </defs>
     {/* Central bloom core */}
@@ -171,17 +171,17 @@ const PaisleyVine = ({ className = "" }: { className?: string }) => (
   <svg className={`${className} dark:brightness-150 dark:contrast-125`} viewBox="0 0 200 700" fill="none">
     <defs>
       <linearGradient id="pv1" x1="0" y1="0" x2="0" y2="700" gradientUnits="userSpaceOnUse">
-        <stop offset="0%" stopColor="hsl(230 60% 18%)" stopOpacity="0.60" />
-        <stop offset="50%" stopColor="hsl(230 60% 32%)" stopOpacity="0.50" />
-        <stop offset="100%" stopColor="hsl(230 60% 48%)" stopOpacity="0.30" />
+        <stop offset="0%" stopColor="hsl(230 60% 18%)" stopOpacity="0.75" />
+        <stop offset="50%" stopColor="hsl(230 60% 32%)" stopOpacity="0.65" />
+        <stop offset="100%" stopColor="hsl(230 60% 48%)" stopOpacity="0.45" />
       </linearGradient>
       <linearGradient id="pv2" x1="0" y1="0" x2="200" y2="0" gradientUnits="userSpaceOnUse">
-        <stop offset="0%" stopColor="hsl(230 55% 16%)" stopOpacity="0.55" />
-        <stop offset="100%" stopColor="hsl(230 55% 40%)" stopOpacity="0.35" />
+        <stop offset="0%" stopColor="hsl(230 55% 16%)" stopOpacity="0.70" />
+        <stop offset="100%" stopColor="hsl(230 55% 40%)" stopOpacity="0.50" />
       </linearGradient>
       <linearGradient id="pv3" x1="100" y1="0" x2="100" y2="700" gradientUnits="userSpaceOnUse">
-        <stop offset="0%" stopColor="hsl(230 60% 25%)" stopOpacity="0.50" />
-        <stop offset="100%" stopColor="hsl(230 60% 45%)" stopOpacity="0.25" />
+        <stop offset="0%" stopColor="hsl(230 60% 25%)" stopOpacity="0.65" />
+        <stop offset="100%" stopColor="hsl(230 60% 45%)" stopOpacity="0.40" />
       </linearGradient>
     </defs>
     {/* Main vine stem — thicker, bolder */}
@@ -221,16 +221,16 @@ const MandalaBorder = ({ className = "" }: { className?: string }) => (
     <defs>
       <linearGradient id="mb1" x1="0" y1="50" x2="1000" y2="50" gradientUnits="userSpaceOnUse">
         <stop offset="0%" stopColor="hsl(230 60% 22%)" stopOpacity="0" />
-        <stop offset="15%" stopColor="hsl(230 60% 22%)" stopOpacity="0.50" />
-        <stop offset="50%" stopColor="hsl(230 60% 38%)" stopOpacity="0.60" />
-        <stop offset="85%" stopColor="hsl(230 60% 22%)" stopOpacity="0.50" />
+        <stop offset="15%" stopColor="hsl(230 60% 22%)" stopOpacity="0.65" />
+        <stop offset="50%" stopColor="hsl(230 60% 38%)" stopOpacity="0.75" />
+        <stop offset="85%" stopColor="hsl(230 60% 22%)" stopOpacity="0.65" />
         <stop offset="100%" stopColor="hsl(230 60% 22%)" stopOpacity="0" />
       </linearGradient>
       <linearGradient id="mb2" x1="0" y1="50" x2="1000" y2="50" gradientUnits="userSpaceOnUse">
         <stop offset="0%" stopColor="hsl(230 55% 30%)" stopOpacity="0" />
-        <stop offset="20%" stopColor="hsl(230 55% 30%)" stopOpacity="0.40" />
-        <stop offset="50%" stopColor="hsl(230 55% 45%)" stopOpacity="0.50" />
-        <stop offset="80%" stopColor="hsl(230 55% 30%)" stopOpacity="0.40" />
+        <stop offset="20%" stopColor="hsl(230 55% 30%)" stopOpacity="0.55" />
+        <stop offset="50%" stopColor="hsl(230 55% 45%)" stopOpacity="0.65" />
+        <stop offset="80%" stopColor="hsl(230 55% 30%)" stopOpacity="0.55" />
         <stop offset="100%" stopColor="hsl(230 55% 30%)" stopOpacity="0" />
       </linearGradient>
     </defs>
@@ -261,9 +261,9 @@ const Rosette = ({ className = "" }: { className?: string }) => (
   <svg className={`${className} dark:brightness-150 dark:contrast-125`} viewBox="0 0 120 120" fill="none">
     <defs>
       <radialGradient id="rs1" cx="60" cy="60" r="60" gradientUnits="userSpaceOnUse">
-        <stop offset="0%" stopColor="hsl(230 60% 20%)" stopOpacity="0.55" />
-        <stop offset="70%" stopColor="hsl(230 60% 35%)" stopOpacity="0.35" />
-        <stop offset="100%" stopColor="hsl(230 60% 50%)" stopOpacity="0.15" />
+        <stop offset="0%" stopColor="hsl(230 60% 20%)" stopOpacity="0.70" />
+        <stop offset="70%" stopColor="hsl(230 60% 35%)" stopOpacity="0.50" />
+        <stop offset="100%" stopColor="hsl(230 60% 50%)" stopOpacity="0.25" />
       </radialGradient>
     </defs>
     <circle cx="60" cy="60" r="8" fill="url(#rs1)" />
