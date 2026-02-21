@@ -10,7 +10,6 @@ const albums = [
   "Independence Day",
   "Yoga Day",
   "Republic Day",
-  "Aarambh Foundation Week",
   "Happython",
   "Prayas",
   "Drishtikon",
@@ -22,18 +21,22 @@ const albums = [
 const galleryItems = [
   { id: 1, event: "Independence Day", alt: "Flag hoisting ceremony" },
   { id: 2, event: "Independence Day", alt: "Cultural performance" },
-  { id: 3, event: "Yoga Day", alt: "Group yoga session" },
-  { id: 4, event: "Yoga Day", alt: "Meditation session" },
-  { id: 5, event: "Republic Day", alt: "Parade assembly" },
-  { id: 6, event: "Prayas", alt: "Community service activity" },
-  { id: 7, event: "Prayas", alt: "Village visit" },
-  { id: 8, event: "PRERNA 16.0", alt: "Camp activities" },
-  { id: 9, event: "PRERNA 16.0", alt: "Group discussion" },
-  { id: 10, event: "Drishtikon", alt: "Workshop session" },
-  { id: 11, event: "Health Checkup", alt: "Health camp" },
-  { id: 12, event: "Happython", alt: "Community engagement" },
-  { id: 13, event: "Aarambh Foundation Week", alt: "Opening ceremony" },
-  { id: 14, event: "Junoon", alt: "Creative workshop" },
+  { id: 3, event: "Yoga Day", alt: "Group yoga session", src: "/YOGA1.jpg" },
+  { id: 4, event: "Yoga Day", alt: "Meditation session", src: "/YOGA2.jpg" },
+  { id: 5, event: "Republic Day", alt: "Parade assembly", src: "/RepublicDay1.jpeg"},
+  { id: 16, event: "Republic Day", alt: "Parade assembly 2", src: "/RepublicDay2.jpeg" },
+  { id: 17, event: "Republic Day", alt: "Parade assembly 3", src: "/RepublicDay3.jpeg" },
+  { id: 6, event: "Prayas", alt: "Community service activity", src: "/Prayas2.jpg" },
+  { id: 7, event: "Prayas", alt: "Village visit", src: "/Prayas3.jpg" },
+  { id: 8, event: "PRERNA 16.0", alt: "Camp activities",src:"/prerna.jpeg" },
+  { id: 20, event: "PRERNA 16.0", alt: "Camp activities",src:"/prerna3.jpeg" },
+  { id: 9, event: "PRERNA 16.0", alt: "Group discussion",src:"/prerna2.jpeg" },
+  { id: 10, event: "Drishtikon", alt: "Workshop session",src:"/drishtikon.jpeg" },
+  { id: 11, event: "Health Checkup", alt: "Health camp", src:"/healthcheckup.jpeg" },
+  { id: 12, event: "Happython", alt: "Community engagement", src: "/Happython1.jpg" },
+  { id: 14, event: "Junoon", alt: "Creative workshop",src:"junoon3.jpeg" },
+  { id: 18, event: "Junoon", alt: "Creative workshop",src:"junoon2.jpeg" },
+  { id: 19, event: "Junoon", alt: "Creative workshop",src:"junoon.jpeg" },
   { id: 15, event: "Independence Day", alt: "Speech event" },
 ];
 
@@ -94,8 +97,14 @@ const Gallery = () => {
                 transition={{ delay: i * 0.04, duration: 0.3 }}
                 className="group aspect-square rounded-xl border border-border/60 bg-muted/30 flex flex-col items-center justify-center gap-2 overflow-hidden cursor-pointer hover:border-primary/20 transition-colors"
               >
-                <Image className="h-7 w-7 text-muted-foreground/40 group-hover:text-primary/40 transition-colors" strokeWidth={1.5} />
-                <span className="text-xs text-muted-foreground text-center px-3">{item.alt}</span>
+                {item.src ? (
+                  <img src={item.src} alt={item.alt} className="w-full h-full object-cover" />
+                ) : (
+                  <>
+                    <Image className="h-7 w-7 text-muted-foreground/40 group-hover:text-primary/40 transition-colors" strokeWidth={1.5} />
+                    <span className="text-xs text-muted-foreground text-center px-3">{item.alt}</span>
+                  </>
+                )}
               </motion.div>
             ))}
           </motion.div>
@@ -103,7 +112,7 @@ const Gallery = () => {
 
         {filtered.length === 0 && (
           <p className="mt-12 text-center text-muted-foreground">
-            No images available for this event yet.
+            No public available for this event yet.
           </p>
         )}
         </div>
